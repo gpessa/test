@@ -1,0 +1,71 @@
+<form class="tnmt-login" name="form" novalidate="" ng-submit="$ctrl.login(form)">
+{{$ctrl.user}}
+  <p>Please enter your details</p>
+
+  <div class="form-element">
+    <input class="form-element__control"
+           ng-model="$ctrl.user.email"
+           placeholder="Email"
+           type="email"
+           name="email"
+           id="email"
+           ng-required="true"/>
+
+    <div ng-messages="form.email.$error" class="form-element__error">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="email">Wrong mail format.</div>
+    </div>
+  </div>
+
+  <div class="form-element">
+    <input class="form-element__control"
+           ng-model="$ctrl.user.password"
+           placeholder="New password"
+           type="password"
+           name="password"
+           id="password"
+           ng-required="true"
+           ng-password-strength="" />
+
+    <div ng-messages="form.password.$error" class="form-element__error">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="maxlength">Passwords cannot be longer than 32 characters.</div>
+      <div ng-message="onlyLowercaseCharacters">Passwords can only contain lower case alphabetic characters.</div>
+      <div ng-message="notIol">Passwords may not contain the characters i, o, l.</div>
+      <div ng-message="pairOfCharacters">Passwords must contain at least two non-overlapping pairs of letters.</div>
+    </div>
+  </div>
+
+  <div class="form-element">
+    <input class="form-element__control"
+           ng-model="$ctrl.user.confirmpassword"
+           placeholder="Confirm new password"
+           type="confirmpassword"
+           name="confirmpassword"
+           id="confirmpassword"
+           ng-required="true"
+           ng-match="user.password" />
+
+   <div ng-messages="form.confirmpassword.$error" class="form-element__error">
+     <div ng-message="required">This is required.</div>
+     <div ng-message="match">Field should match the password.</div>
+   </div>
+  </div>
+
+  <div class="form-element">
+    <label>
+      <input type="checkbox"
+             ng-model="$ctrl.user.termsandconditions"
+             ng-checkbox-required="true"
+             name="termsandconditions"
+             id="termsandconditions"> I agree to TNMT's <a href="">terms and conditions</a>
+    </label>
+
+    <div ng-messages="form.termsandconditions.$error" class="form-element__error">
+      <div ng-message="checkbox-required">This is required.</div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

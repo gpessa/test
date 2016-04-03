@@ -1,0 +1,38 @@
+.form-element {
+  margin-bottom: $form-group-margin-bottom;
+}
+
+.form-element__control {
+  display: block;
+  width: 100%;
+  height: $input-height-base;
+  padding: $padding-base-vertical $padding-base-horizontal;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $input-color;
+  background-color: $input-bg;
+  background-image: none;
+  border: 1px solid $input-border;
+  border-radius: $input-border-radius;
+
+
+  &[disabled],
+  &[readonly]{
+    background-color: $input-bg-disabled;
+  }
+
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: $cursor-disabled;
+  }
+
+}
+
+.form-element__error{
+  color:$brand-error;
+  font-size:$font-size-small;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
