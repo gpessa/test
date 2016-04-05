@@ -18,17 +18,14 @@ export default ngModule => {
             Auth
               .register(this.user)
               .then(response => {
-                debugger;
                 this.success = response.message;
                 form.hide = true;
               })
               .catch(response => {
-                debugger;
                 this.errors = response.message;
                 form.hide = false;
               })
               .finally((response)=> {
-                debugger;
                 form.loading = false;
               })
           }

@@ -1,7 +1,7 @@
 var sinon = require("sinon");
 
 export default ngModule => {
-  var Auth, compile, scope, directiveElem, formtest, $q, $http, $httpBackend;
+  var Auth, compile, scope, directiveElem, $rootScope, formtest, $q, $http, $httpBackend, returnedPromise;
 
   function getCompiledElement(){
     var html = '<login></login>';
@@ -15,75 +15,75 @@ export default ngModule => {
 
     beforeEach(window.module(ngModule.name));
 
-    // beforeEach(window.module(function (_$provide_) {
-    //   _$provide_.decorator('Auth', function($delegate) {
-    //     $delegate.register = function(){
-    //       var deferred = $q.defer();
-    //
-    //       setTimeout(function(){
-    //         deferred.reject({ 'message' : 'user-registered'});
-    //         deferred.resolve({ 'message' : 'user-registered'});
-    //         deferred.notify({ 'message' : 'user-registered'});
-    //       }, 0);
-    //
-    //       return deferred.promise;
-    //     }
-    //     return $delegate;
-    //   });
-    // }));
-
     beforeEach(function(){
-      inject(function (_$rootScope_, _$compile_, $q, $http, $httpBackend, _Auth_) {
+      inject(function (_$rootScope_, _$compile_, $injector, $q,  _$httpBackend_ , _Auth_) {
         scope = _$rootScope_.$new();
+        $rootScope = _$rootScope_;
         $q = $q;
-        $http = $http;
-        $httpBackend = $httpBackend;
+        $httpBackend = _$httpBackend_;
         compile = _$compile_;
         Auth = _Auth_;
 
         directiveElem = getCompiledElement();
+
+        angular.element(document.body).html('').append(directiveElem);
       });
     });
 
-    // it(`should not call the service in case of mistakes`, () => {
-    //   scope.form.email.$setViewValue('nomeecognome@gmail.com');
-    //   scope.form.password.$setViewValue('abcc');
-    //   scope.form.confirmpassword.$setViewValue('abc1c');
-    //   scope.form.termsandconditions.$setViewValue(true);
-    //
-    //   var spy = sinon.spy(Auth, 'register');
-    //   directiveElem.find('button')[0].click();
-    //   expect(spy.callCount).to.be.equal(0);
-    // });
-    //
-    // it(`should not call the service in case the form is correct`, () => {
-    //   scope.form.email.$setViewValue('nomeecognome@gmail.com');
-    //   scope.form.password.$setViewValue('abcc');
-    //   scope.form.confirmpassword.$setViewValue('abcc');
-    //   scope.form.termsandconditions.$setViewValue(true);
-    //
-    //   var spy = sinon.spy(Auth, 'register');
-    //   directiveElem.find('button')[0].click();
-    //   expect(spy.callCount).to.be.equal(1);
-    // });
+    it(`should not call the service in case of mistakes`, () => {
+      scope.form.email.$setViewValue('nomeecognome@gmail.com');
+      scope.form.password.$setViewValue('abcc');
+      scope.form.confirmpassword.$setViewValue('abc1c');
+      scope.form.termsandconditions.$setViewValue(true);
 
-    it(`should display a confirmation message in case of correct data`, (done) => {
+      var spy = sinon.spy(Auth, 'register');
+      directiveElem.find('button')[0].click();
+      expect(spy.callCount).to.be.equal(0);
+    });
+
+    it(`should  call the service in case the form is correct`, () => {
       scope.form.email.$setViewValue('nomeecognome@gmail.com');
       scope.form.password.$setViewValue('abcc');
       scope.form.confirmpassword.$setViewValue('abcc');
       scope.form.termsandconditions.$setViewValue(true);
 
+      $httpBackend.expectPOST('/auth/register').respond(200, { 'message' : 'user-registered'});
+
       var spy = sinon.spy(Auth, 'register');
       directiveElem.find('button')[0].click();
       expect(spy.callCount).to.be.equal(1);
+    });
 
-      setTimeout(function(){
-        console.log('QUI 1');
-        console.log(scope.form.loading);
-        console.log(scope.success);
-        console.log(scope.errors);
-        done()
-      }, 1000);
+    it(`should display a message in case the server respond with a success`, (done) => {
+      scope.form.email.$setViewValue('nomeecognome@gmail.com');
+      scope.form.password.$setViewValue('abcc');
+      scope.form.confirmpassword.$setViewValue('abcc');
+      scope.form.termsandconditions.$setViewValue(true);
+
+      $httpBackend.expectPOST('/auth/register').respond(200, { 'message' : 'user-registered'});
+
+      directiveElem.find('button')[0].click();
+      $httpBackend.flush();
+
+      var successdiv = document.querySelectorAll('.text--success');
+      expect(successdiv.length).to.be.equal(1);
+      done();
+    });
+
+    it(`should display an error in case the server respond with a error`, (done) => {
+      scope.form.email.$setViewValue('nomeecognome@gmail.com');
+      scope.form.password.$setViewValue('abcc');
+      scope.form.confirmpassword.$setViewValue('abcc');
+      scope.form.termsandconditions.$setViewValue(true);
+
+      $httpBackend.expectPOST('/auth/register').respond(500, { 'message' : 'something-went-wrong'});
+
+      directiveElem.find('button')[0].click();
+      $httpBackend.flush();
+
+      var errordiv = document.querySelectorAll('.text--error');
+      expect(errordiv.length).to.be.equal(1);
+      done();
     });
 
   });

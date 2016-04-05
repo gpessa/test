@@ -24,40 +24,37 @@ export default ngModule => {
     //     return proxy;
     //   });
     // })
-
-    .run(function($httpBackend) {
-      $httpBackend.whenRoute('POST','/auth/register').respond(function(){
-        var success = [
-            200, { 'message' : 'user-registered'}
-        ];
-
-        var error = [
-            500, { 'message' : 'something-went-wrong'}
-        ]
-
-        console.log('QUI STICAZZI');
-
-        var isSuccess = Math.random() >= 0.5;
-
-        return isSuccess ? success : error;
-      });
-    })
+    //
+    // .run(function($httpBackend) {
+    //   $httpBackend.whenRoute('POST','/auth/register').respond(function(){
+    //     var success = [
+    //         200, { 'message' : 'user-registered'}
+    //     ];
+    //
+    //     var error = [
+    //         500, { 'message' : 'something-went-wrong'}
+    //     ]
+    //
+    //     console.log('QUI STICAZZI');
+    //
+    //     var isSuccess = Math.random() >= 0.5;
+    //
+    //     return isSuccess ? success : error;
+    //   });
+    // })
 
     .factory('Auth', function($q, $http) {
       var Auth = {
 
         register(user, callback) {
           var deferred = $q.defer();
-          console.log('QUI 0');
-
+          
           $http
             .post('/auth/register', user)
             .then(function(res){
-              console.log('QUI 2');
               deferred.resolve(res.data);
             })
             .catch(err => {
-              console.log('QUI 3');
               deferred.reject(err.data);
             });
 
