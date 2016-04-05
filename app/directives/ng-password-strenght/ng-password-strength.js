@@ -32,7 +32,7 @@ export default ngModule => {
 
         ngModel.$validators['increasingStraightLetters'] = () => {
           let value = ngModel.$viewValue;
-          var matchfound = false;
+          let matchfound = false;
 
           if(value){
             for (let i = 0; i <= value.length - 3; i++) {

@@ -14,7 +14,7 @@ export default ngModule => {
 
         this.login = (form) => {
           if (form.$valid) {
-            this.isLoading = true;
+            form.isLoading = true;
 
             Auth
               .register(this.user)
@@ -27,7 +27,7 @@ export default ngModule => {
                 form.hide = false;
               })
               .finally(response => {
-                this.isLoading = false;
+                form.isLoading = false;
               })
           }
         }

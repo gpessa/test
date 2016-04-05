@@ -8,7 +8,7 @@ export default ngModule => {
 
         $http
           .post(Links.resources.registration, user)
-          .then(function(res) {
+          .then(res => {
             deferred.resolve(res.data);
           })
           .catch(err => {
