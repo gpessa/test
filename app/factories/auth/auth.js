@@ -1,31 +1,70 @@
 export default ngModule => {
 
   if (ON_TEST) {
-    require('./auth.test')(ngModule);
+    require('./auth.test').default(ngModule);
   }
 
-  ngModule.factory('Auth', function() {
-    var Auth = {
+  ngModule
 
-      /**
-       * Authenticate user and save token
-       *
-       * @param  {Object}   user     - login info
-       * @param  {Function} callback - optional, function(error, user)
-       * @return {Promise}
-       */
-      login(user, callback) {
-        debugger;
+    // .config(function($provide) {
+    //   $provide.decorator('$httpBackend', function($delegate) {
+    //     var proxy = function(method, url, data, callback, headers) {
+    //       var interceptor = function() {
+    //         var _this = this,
+    //         _arguments = arguments;
+    //         setTimeout(function() {
+    //           callback.apply(_this, _arguments);
+    //         }, 500);
+    //       };
+    //       return $delegate.call(this, method, url, data, interceptor, headers);
+    //     };
+    //     for(var key in $delegate) {
+    //       proxy[key] = $delegate[key];
+    //     }
+    //     return proxy;
+    //   });
+    // })
 
-        return $http
-          .post('/auth/register', user)
-          .then(res => {
-          })
-          .catch(err => {
-          });
-      }
-    };
+    .run(function($httpBackend) {
+      $httpBackend.whenRoute('POST','/auth/register').respond(function(){
+        var success = [
+            200, { 'message' : 'user-registered'}
+        ];
 
-    return Auth;
-  });
+        var error = [
+            500, { 'message' : 'something-went-wrong'}
+        ]
+
+        console.log('QUI STICAZZI');
+
+        var isSuccess = Math.random() >= 0.5;
+
+        return isSuccess ? success : error;
+      });
+    })
+
+    .factory('Auth', function($q, $http) {
+      var Auth = {
+
+        register(user, callback) {
+          var deferred = $q.defer();
+          console.log('QUI 0');
+
+          $http
+            .post('/auth/register', user)
+            .then(function(res){
+              console.log('QUI 2');
+              deferred.resolve(res.data);
+            })
+            .catch(err => {
+              console.log('QUI 3');
+              deferred.reject(err.data);
+            });
+
+          return deferred.promise;
+        }
+      };
+
+      return Auth;
+    });
 };

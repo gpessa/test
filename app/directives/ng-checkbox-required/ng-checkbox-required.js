@@ -1,7 +1,7 @@
 export default ngModule => {
 
   if (ON_TEST) {
-    require('./ng-checkbox-required.test')(ngModule);
+    require('./ng-checkbox-required.test').default(ngModule);
   }
 
   ngModule.directive('ngCheckboxRequired', function(){

@@ -9,9 +9,7 @@ var config = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      ON_TEST: process.env.NODE_ENV === 'test'
-    })
+    new webpack.DefinePlugin({ON_TEST: process.env.NODE_ENV === 'test'})
   ],
 
   module: {
@@ -19,7 +17,9 @@ var config = {
       {test: /\.js$/, loader: 'ng-annotate!babel', exclude: /node_modules/},
       {test: /\.html$/, loader: 'raw', exclude: /node_modules/},
       {test: /\.css$/, loader: 'style!css', exclude: /node_modules/},
-      {test: /\.scss$/, loader: 'style!css!sass', exclude: /node_modules/}
+      {test: /\.scss$/, loader: 'style!css!sass', exclude: /node_modules/},
+      {test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
+      { test: /sinon.*\.js$/,                loader: "imports?define=>false" }
     ]
   }
 };

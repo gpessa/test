@@ -1,71 +1,92 @@
-<form class="tnmt-login" name="form" novalidate="" ng-submit="$ctrl.login(form)">
-{{$ctrl.user}}
-  <p>Please enter your details</p>
+<section class="login" >
 
-  <div class="form-element">
-    <input class="form-element__control"
-           ng-model="$ctrl.user.email"
-           placeholder="Email"
-           type="email"
-           name="email"
-           id="email"
-           ng-required="true"/>
 
-    <div ng-messages="form.email.$error" class="form-element__error">
-      <div ng-message="required">This is required.</div>
-      <div ng-message="email">Wrong mail format.</div>
-    </div>
-  </div>
+  <form name="form" novalidate="" ng-submit="$ctrl.login(form)" ng-hide="form.hide">
 
-  <div class="form-element">
-    <input class="form-element__control"
-           ng-model="$ctrl.user.password"
-           placeholder="New password"
-           type="password"
-           name="password"
-           id="password"
-           ng-required="true"
-           ng-password-strength="" />
+    <p>Please enter your details</p>
 
-    <div ng-messages="form.password.$error" class="form-element__error">
-      <div ng-message="required">This is required.</div>
-      <div ng-message="maxlength">Passwords cannot be longer than 32 characters.</div>
-      <div ng-message="onlyLowercaseCharacters">Passwords can only contain lower case alphabetic characters.</div>
-      <div ng-message="notIol">Passwords may not contain the characters i, o, l.</div>
-      <div ng-message="pairOfCharacters">Passwords must contain at least two non-overlapping pairs of letters.</div>
-    </div>
-  </div>
+    <fieldset ng-disabled="form.loading">
 
-  <div class="form-element">
-    <input class="form-element__control"
-           ng-model="$ctrl.user.confirmpassword"
-           placeholder="Confirm new password"
-           type="confirmpassword"
-           name="confirmpassword"
-           id="confirmpassword"
-           ng-required="true"
-           ng-match="user.password" />
+      <div class="form-element">
+        <input id="email"
+               name="email"
+               class="form-element__control"
+               type="email"
+               ng-model="$ctrl.user.email"
+               placeholder="Email"
+               ng-required="true"/>
 
-   <div ng-messages="form.confirmpassword.$error" class="form-element__error">
-     <div ng-message="required">This is required.</div>
-     <div ng-message="match">Field should match the password.</div>
-   </div>
-  </div>
+        <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted" class="form-element__error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="email">Wrong mail format.</div>
+        </div>
+      </div>
 
-  <div class="form-element">
-    <label>
-      <input type="checkbox"
-             ng-model="$ctrl.user.termsandconditions"
-             ng-checkbox-required="true"
-             name="termsandconditions"
-             id="termsandconditions"> I agree to TNMT's <a href="">terms and conditions</a>
-    </label>
+      <div class="form-element">
+        <input id="password"
+               name="password"
+               class="form-element__control"
+               type="text"
+               ng-model="$ctrl.user.password"
+               placeholder="New password"
+               ng-required="true"
+               ng-password-strength="" />
 
-    <div ng-messages="form.termsandconditions.$error" class="form-element__error">
-      <div ng-message="checkbox-required">This is required.</div>
-    </div>
-  </div>
+        <div ng-messages="form.password.$error" ng-if="form.password.$touched || form.$submitted" class="form-element__error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="maxlength">Passwords cannot be longer than 32 characters.</div>
+          <div ng-message="onlyLowercaseCharacters">Passwords can only contain lower case alphabetic characters.</div>
+          <div ng-message="notIol">Passwords may not contain the characters i, o, l.</div>
+          <div ng-message="pairOfCharacters">Passwords must contain at least two non-overlapping pairs of letters.</div>
+          <div ng-message="increasingStraightLetters">Passwords must include one increasing straight of at least three letters.</div>
+        </div>
+      </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="form-element">
+        <input id="confirmpassword"
+               name="confirmpassword"
+               class="form-element__control"
+               type="text"
+               ng-model="$ctrl.user.confirmpassword"
+               placeholder="Confirm new password"
+               ng-required="true"
+               ng-match="$ctrl.user.password" />
 
-</form>
+        <div ng-messages="form.confirmpassword.$error" ng-if="form.confirmpassword.$touched || form.$submitted" class="form-element__error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="match">Field should match the password.</div>
+        </div>
+      </div>
+
+      <div class="form-element">
+        <label>
+          <input id="termsandconditions"
+                 name="termsandconditions"
+                 type="checkbox"
+                 ng-model="$ctrl.user.termsandconditions"
+                 ng-checkbox-required="true"> I agree to TNMT's <a href="">terms and conditions</a>
+        </label>
+
+        <div ng-messages="form.termsandconditions.$error" ng-if="form.termsandconditions.$touched || form.$submitted" class="form-element__error">
+          <div ng-message="checkbox-required">This is required.</div>
+        </div>
+      </div>
+
+      <div class="form-element" ng-if="$ctrl.errors">
+        <div class="text text--error">Something went wrong. Please try again later.</div>
+      </div>
+
+      <div class="form-element">
+        <button type="submit" class="btn btn--primary">
+          Submit
+          <i class="tnt-icon tnt-icon--arrow-circle-o-right"></i>
+        </button>
+      </div>
+
+    </fieldset>
+
+  </form>
+
+  <div class="text text--success" ng-if="$ctrl.success">You have received an e-mail to confirm your registration.</div>
+
+</section>

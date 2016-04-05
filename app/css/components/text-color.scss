@@ -1,0 +1,14 @@
+@mixin text-emphasis-variant($parent, $color) {
+  #{$parent} {
+    color: $color;
+  }
+  a#{$parent}:hover,
+  a#{$parent}:focus {
+    color: darken($color, 10%);
+  }
+}
+
+@include text-emphasis-variant('.text--primary', $brand-primary);
+@include text-emphasis-variant('.text--secondary', $brand-secondary);
+@include text-emphasis-variant('.text--success', $brand-success);
+@include text-emphasis-variant('.text--error', $brand-error);

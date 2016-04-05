@@ -24,6 +24,7 @@
   &[disabled],
   fieldset[disabled] & {
     cursor: $cursor-disabled;
+    background-color: $input-bg-disabled;
   }
 
 }
@@ -31,7 +32,6 @@
 .form-element__error{
   color:$brand-error;
   font-size:$font-size-small;
-  text-transform: uppercase;
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;

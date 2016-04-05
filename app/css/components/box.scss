@@ -1,0 +1,23 @@
+.box {
+  margin-bottom: $line-height-computed;
+  border-radius: $box-border-radius;
+
+  .box__body {
+    padding: $box-body-padding;
+    @include clearfix;
+  }
+}
+
+
+
+// Alternate box
+// --------------------------------------------------
+.box--default{
+  background-color: $box-default-bg;
+  border: 1px solid $box-default-border;
+}
+
+.box--clear{
+  background-color: $box-clear-bg;
+  border: 1px solid $box-clear-border;
+}

@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Tnt Icons';
+  src: url(#{$tnt-icons-font-path}tnt-icons.eot);
+  src: url(#{$tnt-icons-font-path}tnt-icons.eot?#iefix) format("embedded-opentype"),
+       url(#{$tnt-icons-font-path}tnt-icons.woff2) format("woff2"),
+       url(#{$tnt-icons-font-path}tnt-icons.woff) format("woff"),
+       url(#{$tnt-icons-font-path}tnt-icons.ttf) format("truetype"),
+       url(#{$tnt-icons-font-path}tnt-icons.svg#wf) format("svg")
+}
+
+
+.tnt-icon{
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Tnt Icons';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tnt-icon--arrow-circle-o-right:after{
+  content: "";
+}

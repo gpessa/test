@@ -1,8 +1,13 @@
+$museo-font-path:       "../fonts/museo/";
+$tnt-icons-font-path:   "../fonts/tnt-icons/";
+
+
 $brand-primary:          $blue;
 $brand-secondary:        $orange;
-$brand-error:            red;
+$brand-success:          $green;
+$brand-error:            $red;
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "Museo Sans 300", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
@@ -43,7 +48,7 @@ $input-bg-disabled:              $gray-lighter !default;
 $input-color:                    $gray !default;
 $input-border:                   $gray-dark !default;
 $input-border-radius:            3px;
-$form-group-margin-bottom:       15px !default;
+$form-group-margin-bottom:       25px !default;
 $input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 8) !default;
 
 // BUTTONS
@@ -59,7 +64,11 @@ $btn-primary-bg:                 $brand-primary !default;
 $btn-primary-border:             darken($btn-primary-bg, 5%) !default;
 
 // PANELS
-$panel-bg:                    #fff !default;
-$panel-border:                $gray-light;
-$panel-body-padding:          36px !default;
-$panel-border-radius:         0 !default;
+$box-body-padding:          36px !default;
+$box-border-radius:         0 !default;
+
+$box-default-bg:                  transparent !default;
+$box-default-border:              transparent;
+
+$box-clear-bg:                    #fff !default;
+$box-clear-border:                $gray-light;

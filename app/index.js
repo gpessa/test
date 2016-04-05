@@ -1,16 +1,13 @@
-require('./theme/theme.scss');
+require('./css/theme.scss');
 
 import angular from 'angular';
-import ngMessages from 'angular-messages'
+import ngMessages from 'angular-messages';
+import ngMocks from 'angular-mocks';
 
-import registerDirectives from './factories';
-import registerFactories from './directives';
+import registerFactories from './factories';
+import registerDirectives from './directives';
 
-if (ON_TEST) {
-  require('angular-mocks/angular-mocks');
-}
-
-const ngModule = angular.module('app', ['ngMessages']);
+const ngModule = angular.module('app', ['ngMessages', 'ngMockE2E']);
 
 registerFactories(ngModule);
 registerDirectives(ngModule);

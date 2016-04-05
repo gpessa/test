@@ -1,7 +1,7 @@
 export default ngModule => {
 
   if (ON_TEST) {
-    require('./ng-match.test')(ngModule);
+    require('./ng-match.test').default(ngModule);
   }
 
   ngModule.directive('ngMatch', function($parse){

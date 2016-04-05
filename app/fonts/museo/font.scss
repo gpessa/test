@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Museo Sans 300';
+  src: url(#{$museo-font-path}museo.eot);
+  src: url(#{$museo-font-path}museo.eot?#iefix) format("embedded-opentype"),
+       url(#{$museo-font-path}museo.woff2) format("woff2"),
+       url(#{$museo-font-path}museo.woff) format("woff"),
+       url(#{$museo-font-path}museo.ttf) format("truetype"),
+       url(#{$museo-font-path}museo.svg#wf) format("svg")
+}
