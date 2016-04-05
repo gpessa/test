@@ -19,7 +19,7 @@ var config = {
       {test: /\.css$/, loader: 'style!css', exclude: /node_modules/},
       {test: /\.scss$/, loader: 'style!css!sass', exclude: /node_modules/},
       {test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
-      { test: /sinon.*\.js$/,                loader: "imports?define=>false" }
+      { test: /sinon.*\.js$/, loader: "imports?define=>false" }
     ]
   }
 };

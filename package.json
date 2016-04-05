@@ -1,5 +1,5 @@
 {
-  "name": "webpack-angular",
+  "name": "small-angular-application",
   "version": "1.0.0",
   "main": "app/index.js",
   "scripts": {
@@ -12,7 +12,6 @@
   "devDependencies": {
     "api-check": "^6.0.10",
     "babel-core": "6.4.0",
-    "babel-loader": "6.2.1",
     "babel-preset-es2015": "6.3.13",
     "babel-preset-stage-2": "6.3.13",
     "css-loader": "^0.9.1",
@@ -29,9 +28,10 @@
     "ng-annotate-loader": "0.0.10",
     "raw-loader": "^0.5.1",
     "sass-loader": "latest",
-    "sinon": "1.11.0",
     "style-loader": "^0.8.3",
     "url-loader": "^0.5.5",
+    "babel-loader": "6.2.1",
+    "sinon": "1.11.0",
     "webpack": "^1.12.12",
     "webpack-core": "^0.6.8",
     "webpack-dev-server": "^1.7.0"

@@ -19,11 +19,12 @@ if(ON_TEST){
     $provide.decorator('$httpBackend', function($delegate) {
       var proxy = function(method, url, data, callback, headers) {
         var interceptor = function() {
+          var delay = Math.floor(Math.random() * 2500) + 500;
           var _this = this,
           _arguments = arguments;
           setTimeout(function() {
             callback.apply(_this, _arguments);
-          }, 500);
+          }, delay);
         };
         return $delegate.call(this, method, url, data, interceptor, headers);
       };
@@ -36,15 +37,11 @@ if(ON_TEST){
 
   ngModule.run(function($httpBackend) {
     $httpBackend.whenPOST('/auth/register').respond(function(){
-      var success = [
-          200, { 'message' : 'user-registered'}
-      ];
+      var success, error, isSuccess;
 
-      var error = [
-          500, { 'message' : 'something-went-wrong'}
-      ]
-
-      var isSuccess = Math.random() >= 0.5;
+      success = [200, { 'message' : 'user-registered'}];
+      error = [500, { 'message' : 'something-went-wrong'}];
+      isSuccess = Math.random() >= 0.5;
 
       return isSuccess ? success : error;
     });

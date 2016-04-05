@@ -13,3 +13,7 @@
 @import "./components/box.scss";
 @import "./components/heading.scss";
 @import "./components/spinner.scss";
+
+body{
+  padding: 0 $padding-base-horizontal;
+}
