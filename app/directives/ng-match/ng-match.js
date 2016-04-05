@@ -11,12 +11,12 @@ export default ngModule => {
       link: function (scope, element, attrs, ngModel) {
         var matchId = $parse(attrs.ngMatch);
 
-        ngModel.$validators['match'] = function(){
+        ngModel.$validators['match'] = () => {
           var match = getMatchValue();
           return ngModel.$viewValue === match;
         };
 
-        scope.$watch(getMatchValue, function(){
+        scope.$watch(getMatchValue, () => {
             ngModel.$$parseAndValidate();
         });
 

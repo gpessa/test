@@ -18,7 +18,7 @@ export default ngModule => {
           .prepend(spinner)
           .addClass('spinner');
 
-        scope.$watch(isLoading, function(isLoading){
+        scope.$watch(isLoading, (isLoading) => {
           spinner.toggleClass('ng-hide', !isLoading);
         });
 

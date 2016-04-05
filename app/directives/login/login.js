@@ -4,7 +4,7 @@ export default ngModule => {
     require('./login.test').default(ngModule);
   }
 
-  ngModule.directive('login', function(Auth, Links, $timeout) {
+  ngModule.directive('login', /*@ngInject*/ (Auth, Links, $timeout) => {
     return {
       restrict: 'E',
       template: require('./login.html'),
@@ -12,7 +12,7 @@ export default ngModule => {
       controller: /*@ngInject*/ function($scope) {
         this.termsandconditions = Links.pages.termsandconditions;
 
-        this.login = function(form) {
+        this.login = (form) => {
           if (form.$valid) {
             this.isLoading = true;
 
@@ -26,7 +26,7 @@ export default ngModule => {
                 this.errors = true;
                 form.hide = false;
               })
-              .finally((response) => {
+              .finally(response => {
                 this.isLoading = false;
               })
           }
