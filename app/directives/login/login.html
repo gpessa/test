@@ -1,7 +1,6 @@
 <section class="login" >
 
-
-  <form name="form" novalidate="" ng-submit="$ctrl.login(form)" ng-hide="form.hide" spinner-loading="$ctrl.isLoading">
+  <form name="form" novalidate="" ng-submit="$ctrl.login(form)" ng-hide="form.hide" spinner="$ctrl.isLoading">
 
     <p>Please enter your details</p>
 
@@ -73,7 +72,7 @@
     <div class="form-element" ng-if="$ctrl.errors">
       <div class="text text--error">Something went wrong. Please try again later.</div>
     </div>
-    {{$ctrl.isLoading}}
+
 
     <div class="form-element">
       <button type="submit" class="btn btn--primary">

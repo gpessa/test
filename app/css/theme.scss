@@ -13,7 +13,11 @@
 @import "./components/box.scss";
 @import "./components/heading.scss";
 
-.spinner-loading{
+.spinner{
+  position: relative;
+}
+
+.spinner--element{
   background:rgba(255,255,255, 0.4);
   position: absolute;
   top: 0;

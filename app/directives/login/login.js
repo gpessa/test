@@ -27,9 +27,7 @@ export default ngModule => {
                 form.hide = false;
               })
               .finally((response)=> {
-                // $timeout(() => {
                   this.isLoading = false;
-                // },1000)
               })
           }
         }

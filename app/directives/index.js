@@ -1,5 +1,5 @@
 import login from './login';
-import spinnerLoading from './spinner-loading';
+import spinner from './spinner';
 
 import ngCheckboxRequired from './ng-checkbox-required';
 import ngPasswordStrenght from './ng-password-strenght';
@@ -9,6 +9,6 @@ export default ngModule => {
   ngCheckboxRequired(ngModule);
   ngPasswordStrenght(ngModule);
   ngMatch(ngModule);
-  spinnerLoading(ngModule);
+  spinner(ngModule);
   login(ngModule);
 };
