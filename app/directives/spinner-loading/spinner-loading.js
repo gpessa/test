@@ -1,5 +1,9 @@
 export default ngModule => {
 
+  if (ON_TEST) {
+    require('./spinner-loading.test').default(ngModule);
+  }
+
   ngModule.directive('spinnerLoading', function($parse) {
     return {
       restrict: 'A',
@@ -7,17 +11,17 @@ export default ngModule => {
       link : function(scope, element, attrs) {
         var spinner, spinnerLoading;
 
-        element.addClass('spinner-loading-wrapper');
-        spinner = element.append('<div class="spinner-loading-wrapper__elemenet"></div>');
+        spinner = angular.element('<div class="spinner-loading"></div>');
         spinnerLoading = $parse(attrs.spinnerLoading);
 
+        element.append(spinner)
+
         scope.$watch(isLoading, function(isLoading){
-          console.log(isLoading == true);
-          element.toggleClass('spinner-loading-wrapper--show-element', isLoading == true );
+          spinner.toggleClass('ng-hide', !isLoading);
         });
 
         function isLoading(){
-          return spinnerLoading(scope);
+          return spinnerLoading(scope) || false;
         }
       }
     };

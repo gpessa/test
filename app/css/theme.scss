@@ -13,22 +13,11 @@
 @import "./components/box.scss";
 @import "./components/heading.scss";
 
-.spinner-loading-wrapper{
-  position: relative;
-
-  .spinner-loading-wrapper__elemenet{
-    background:rgba(255,255,255, 0.4);
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom:0;
-    display: block;
-    display: none;
-  }
-}
-.spinner-loading-wrapper--show-element{
-  .spinner-loading-wrapper__elemenet{
-    display: block;
-  }
+.spinner-loading{
+  background:rgba(255,255,255, 0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom:0;
 }
