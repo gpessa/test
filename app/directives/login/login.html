@@ -1,17 +1,11 @@
-<section class="login" >
+<section class="login">
 
   <form name="form" novalidate="" ng-submit="$ctrl.login(form)" ng-hide="form.hide" spinner="$ctrl.isLoading">
 
     <p>Please enter your details</p>
 
     <div class="form-element">
-      <input id="email"
-             name="email"
-             class="form-element__control"
-             type="email"
-             ng-model="$ctrl.user.email"
-             placeholder="Email"
-             ng-required="true"/>
+      <input id="email" name="email" class="form-element__control" type="email" ng-model="$ctrl.user.email" placeholder="Email" ng-required="true" />
 
       <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted" class="form-element__error">
         <div ng-message="required">This is required.</div>
@@ -20,14 +14,7 @@
     </div>
 
     <div class="form-element">
-      <input id="password"
-             name="password"
-             class="form-element__control"
-             type="text"
-             ng-model="$ctrl.user.password"
-             placeholder="New password"
-             ng-required="true"
-             ng-password-strength="" />
+      <input id="password" name="password" class="form-element__control" type="text" ng-model="$ctrl.user.password" placeholder="New password" ng-required="true" ng-password-strength="" />
 
       <div ng-messages="form.password.$error" ng-if="form.password.$touched || form.$submitted" class="form-element__error">
         <div ng-message="required">This is required.</div>
@@ -40,14 +27,7 @@
     </div>
 
     <div class="form-element">
-      <input id="confirmpassword"
-             name="confirmpassword"
-             class="form-element__control"
-             type="text"
-             ng-model="$ctrl.user.confirmpassword"
-             placeholder="Confirm new password"
-             ng-required="true"
-             ng-match="$ctrl.user.password" />
+      <input id="confirmpassword" name="confirmpassword" class="form-element__control" type="text" ng-model="$ctrl.user.confirmpassword" placeholder="Confirm new password" ng-required="true" ng-match="$ctrl.user.password" />
 
       <div ng-messages="form.confirmpassword.$error" ng-if="form.confirmpassword.$touched || form.$submitted" class="form-element__error">
         <div ng-message="required">This is required.</div>
@@ -57,11 +37,7 @@
 
     <div class="form-element">
       <label>
-        <input id="termsandconditions"
-               name="termsandconditions"
-               type="checkbox"
-               ng-model="$ctrl.user.termsandconditions"
-               ng-checkbox-required="true"> I agree to TNMT's <a ng-href="{{$ctrl.termsandconditions}}">terms and conditions</a>
+        <input id="termsandconditions" name="termsandconditions" type="checkbox" ng-model="$ctrl.user.termsandconditions" ng-checkbox-required="true"> I agree to TNMT's <a ng-href="{{$ctrl.termsandconditions}}">terms and conditions</a>
       </label>
 
       <div ng-messages="form.termsandconditions.$error" ng-if="form.termsandconditions.$touched || form.$submitted" class="form-element__error">
@@ -73,14 +49,12 @@
       <div class="text text--error">Something went wrong. Please try again later.</div>
     </div>
 
-
     <div class="form-element">
       <button type="submit" class="btn btn--primary">
         Submit
         <i class="tnt-icon tnt-icon--arrow-circle-o-right"></i>
       </button>
     </div>
-
 
   </form>
 

@@ -1,12 +1,12 @@
-$gray-base:              #000 !default;
-$gray-darker:            #333f48 !default; // #222
+$gray-base:              #000;
+$gray-darker:            #333f48;
 $gray-dark:              #a5a5a5;
-$gray:                   lighten($gray-base, 33.5%) !default; // #555
+$gray:                   lighten($gray-base, 33.5%);
 $gray-light:             #dfdfdf;
-$gray-lighter:           #f7f7f7 !default;
+$gray-lighter:           #f7f7f7;
 
 $blue:          #1cb3f4;
 $orange:        #ff6600;
 $blue-darker:   #35414a;
 $red:           #D8000C;
-$green:         green;
+$green:         #5cb85c;

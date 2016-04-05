@@ -3,7 +3,7 @@ var sinon = require("sinon");
 export default ngModule => {
   var Auth, compile, scope, directiveElem, $rootScope, formtest, $q, $http, $httpBackend, returnedPromise;
 
-  function getCompiledElement(){
+  function getCompiledElement() {
     var html = '<login></login>';
     var element = angular.element(html);
     var compiledElement = compile(element)(scope);
@@ -17,8 +17,8 @@ export default ngModule => {
 
     beforeEach(window.module(ngModule.name));
 
-    beforeEach(function(){
-      inject(function (_$rootScope_, _$compile_, $injector, $q,  _$httpBackend_ , _Auth_) {
+    beforeEach(function() {
+      inject(function(_$rootScope_, _$compile_, $injector, $q, _$httpBackend_, _Auth_) {
         scope = _$rootScope_.$new();
         $rootScope = _$rootScope_;
         $q = $q;
@@ -47,7 +47,9 @@ export default ngModule => {
       scope.form.confirmpassword.$setViewValue('abcc');
       scope.form.termsandconditions.$setViewValue(true);
 
-      $httpBackend.expectPOST('/auth/register').respond(200, { 'message' : 'user-registered'});
+      $httpBackend.expectPOST('/auth/register').respond(200, {
+        'message': 'user-registered'
+      });
 
       var spy = sinon.spy(Auth, 'register');
       directiveElem.find('button')[0].click();
@@ -61,12 +63,14 @@ export default ngModule => {
       scope.form.confirmpassword.$setViewValue('abcc');
       scope.form.termsandconditions.$setViewValue(true);
 
-      $httpBackend.expectPOST('/auth/register').respond({ 'message' : 'user-registered'});
+      $httpBackend.expectPOST('/auth/register').respond({
+        'message': 'user-registered'
+      });
 
       directiveElem.find('button')[0].click();
       $httpBackend.flush();
 
-      setTimeout(function(){
+      setTimeout(function() {
         var successdiv = document.querySelectorAll('.text--success');
         expect(successdiv.length).to.be.equal(1);
         done();
@@ -79,12 +83,14 @@ export default ngModule => {
       scope.form.confirmpassword.$setViewValue('abcc');
       scope.form.termsandconditions.$setViewValue(true);
 
-      $httpBackend.expectPOST('/auth/register').respond(500, { 'message' : 'something-went-wrong'});
+      $httpBackend.expectPOST('/auth/register').respond(500, {
+        'message': 'something-went-wrong'
+      });
 
       directiveElem.find('button')[0].click();
       $httpBackend.flush();
 
-      setTimeout(function(){
+      setTimeout(function() {
         var errordiv = document.querySelectorAll('.text--error');
         expect(errordiv.length).to.be.equal(1);
         done();

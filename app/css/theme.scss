@@ -12,16 +12,4 @@
 @import "./components/text-color.scss";
 @import "./components/box.scss";
 @import "./components/heading.scss";
-
-.spinner{
-  position: relative;
-}
-
-.spinner--element{
-  background:rgba(255,255,255, 0.4);
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom:0;
-}
+@import "./components/spinner.scss";

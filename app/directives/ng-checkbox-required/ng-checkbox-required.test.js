@@ -1,7 +1,7 @@
 export default ngModule => {
   var compile, scope, directiveElem, formtest;
 
-  function getCompiledElement(){
+  function getCompiledElement() {
     var html = '<form name="formtest">\
                   <input type="checkbox" ng-model="checkbox" ng-checkbox-required="" name="checkbox">\
                 </form>';
@@ -12,10 +12,10 @@ export default ngModule => {
   }
 
   describe(`ng-checkbox-required`, () => {
-    beforeEach(function(){
+    beforeEach(function() {
       window.module(ngModule.name);
 
-      inject(function($compile, $rootScope){
+      inject(function($compile, $rootScope) {
         compile = $compile;
         scope = $rootScope.$new();
       });

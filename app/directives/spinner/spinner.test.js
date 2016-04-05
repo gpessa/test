@@ -8,7 +8,7 @@ export default ngModule => {
     return (style.display === 'none')
   }
 
-  function getCompiledElement(){
+  function getCompiledElement() {
     var html = '<div spinner="isLoading"></div>';
     var element = angular.element(html);
     var compiledElement = compile(element)(scope);
@@ -22,8 +22,8 @@ export default ngModule => {
 
     beforeEach(window.module(ngModule.name));
 
-    beforeEach(function(){
-      inject(function (_$rootScope_, _$compile_) {
+    beforeEach(function() {
+      inject(function(_$rootScope_, _$compile_) {
         scope = _$rootScope_.$new();
         $rootScope = _$rootScope_;
         compile = _$compile_;
@@ -35,21 +35,21 @@ export default ngModule => {
     it(`should not have a spinner at the beginning`, () => {
       scope.$apply();
       var spinner = directiveElem[0].querySelector('.spinner--element');
-      expect( isHidden(spinner) ).to.equal(true);
+      expect(isHidden(spinner)).to.equal(true);
     });
 
     it(`should have a spinner if the element is loading`, () => {
       scope.isLoading = true;
       scope.$apply();
       var spinner = directiveElem[0].querySelector('.spinner--element');
-      expect( isHidden(spinner) ).to.equal(false);
+      expect(isHidden(spinner)).to.equal(false);
     });
 
     it(`should not have a spinner if the element is not loading`, () => {
       scope.isLoading = false;
       scope.$apply();
       var spinner = directiveElem[0].querySelector('.spinner--element');
-      expect( isHidden(spinner) ).to.equal(true);
+      expect(isHidden(spinner)).to.equal(true);
     });
 
   });

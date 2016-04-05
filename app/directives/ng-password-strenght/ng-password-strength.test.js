@@ -1,7 +1,7 @@
 export default ngModule => {
   var compile, scope, directiveElem, formtest;
 
-  function getCompiledElement(){
+  function getCompiledElement() {
     var html = '<form name="formtest">\
                   <input name="password" type="password" ng-model="model.password" ng-password-strength=""/>\
                 </form>';
@@ -12,10 +12,10 @@ export default ngModule => {
   }
 
   describe(`ng-password-strength`, () => {
-    beforeEach(function(){
+    beforeEach(function() {
       window.module(ngModule.name);
 
-      inject(function($compile, $rootScope){
+      inject(function($compile, $rootScope) {
         compile = $compile;
         scope = $rootScope.$new();
       });

@@ -9,11 +9,11 @@ export default ngModule => {
       restrict: 'E',
       template: require('./login.html'),
       controllerAs: '$ctrl',
-      controller : /*@ngInject*/ function($scope) {
+      controller: /*@ngInject*/ function($scope) {
         this.termsandconditions = Links.pages.termsandconditions;
 
-        this.login = function(form){
-          if(form.$valid){
+        this.login = function(form) {
+          if (form.$valid) {
             this.isLoading = true;
 
             Auth
@@ -26,12 +26,11 @@ export default ngModule => {
                 this.errors = true;
                 form.hide = false;
               })
-              .finally((response)=> {
-                  this.isLoading = false;
+              .finally((response) => {
+                this.isLoading = false;
               })
           }
         }
-
       }
     };
   });
