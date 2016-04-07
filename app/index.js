@@ -1,11 +1,18 @@
+// Theme
 require('./css/theme.scss');
 
+// External dependecies
 import angular from 'angular';
 import ngMessages from 'angular-messages';
 import ngMocks from 'angular-mocks';
 
+// Inclusion directives and factories
 import registerFactories from './factories';
 import registerDirectives from './directives';
+
+// If the application is in TEST mode ngMock is added as dependecy otherwise
+// it will use ngMockE2E with some fake calls and some timeout on them to show
+// the loader
 
 if(ON_TEST){
 
