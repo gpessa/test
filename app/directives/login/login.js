@@ -4,7 +4,7 @@ export default ngModule => {
     require('./login.test').default(ngModule);
   }
 
-  ngModule.directive('login', /*@ngInject*/ (Auth, Links, $timeout) => {
+  ngModule.directive('login', /*@ngInject*/ (Auth, Links) => {
     return {
       restrict: 'E',
       template: require('./login.html'),
